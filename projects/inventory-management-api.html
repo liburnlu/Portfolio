@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Management API — liburnlumani</title>
+  <meta name="description" content="Generic inventory system built with ASP.NET Core Web API." />
+  <meta property="og:title" content="Inventory Management API — liburnlumani" />
+  <meta property="og:description" content="Generic inventory system built with ASP.NET Core Web API." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body data-project="inventory-management-api">
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">liburnlumani<span style="color:var(--muted)">_</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#featured">Featured</a></li>
+        <li><a href="../index.html#repos">Projects</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <a href="https://github.com/liburnlu" target="_blank" rel="noopener noreferrer" class="nav-cta">GitHub ↗</a>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="../index.html#about" onclick="closeMenu()">About</a>
+    <a href="../index.html#featured" onclick="closeMenu()">Featured</a>
+    <a href="../index.html#repos" onclick="closeMenu()">Projects</a>
+    <a href="../index.html#contact" onclick="closeMenu()">Contact</a>
+    <a href="https://github.com/liburnlu" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  </div>
+
+  <main class="case-study-page">
+    <div class="case-study-wrap">
+      <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
+
+      <header class="case-study-hero fade-in">
+        <p class="case-study-role">Solo project</p>
+        <h1>Inventory Management API</h1>
+        <p class="case-study-summary">Generic inventory system built with ASP.NET Core Web API.</p>
+        <div class="skills-grid">
+          <span class="skill-chip">C#</span>
+          <span class="skill-chip">ASP.NET Core</span>
+          <span class="skill-chip">Entity Framework</span>
+          <span class="skill-chip">SQL Server</span>
+        </div>
+      </header>
+
+      <div class="case-study-links fade-in">
+        <a href="https://github.com/liburnlu/inventoryManagementAPI" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">View on GitHub ↗</a>
+        <a href="../index.html#featured" class="btn-outline btn-sm">← All featured projects</a>
+      </div>
+
+      <div class="case-study-content fade-in">
+        <h2>Overview</h2>
+        <p>This project is a generic inventory management API built with ASP.NET Core. It provides endpoints to manage products, track stock levels, and organize items into categories — a foundation that can be adapted for warehouses, retail, or any system that needs stock tracking.</p>
+        <p>I focused on clean structure: a service layer for business logic, repositories for data access, and well-defined models. The design prioritizes readability and extensibility so new features (orders, suppliers, reporting) can be added without rewriting core logic.</p>
+
+        <h2>Key features</h2>
+        <ul class="highlights-list">
+          <li>Full CRUD operations for products, categories, and stock levels</li>
+          <li>Clean layered architecture separating concerns</li>
+          <li>Reusable domain model applicable to different inventory scenarios</li>
+        </ul>
+
+        <h2>Outcome</h2>
+        <p>A well-structured REST API demonstrating solid backend fundamentals and domain modeling.</p>
+
+        <h2>What I learned</h2>
+        <ul class="highlights-list">
+          <li>Designing a generic model upfront saves refactoring when requirements expand.</li>
+          <li>Entity Framework migrations keep schema changes traceable and reversible.</li>
+        </ul>
+      </div>
+
+      <nav class="project-nav" id="project-nav" aria-label="Project navigation"></nav>
+    </div>
+  </main>
+
+  <footer>
+    <span>built by <a href="https://github.com/liburnlu">liburnlumani</a></span>
+  </footer>
+
+  <script src="../js/projects.js"></script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/case-study.js"></script>
+</body>
+</html>
