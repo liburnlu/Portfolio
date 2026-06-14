@@ -63,6 +63,8 @@ function renderFeatured() {
 }
 
 /* ── GitHub fetch ── */
+const HIDDEN_REPOS = new Set(['Portfolio']);
+
 let allRepos = [];
 
 async function loadGitHub() {
@@ -100,7 +102,9 @@ async function loadGitHub() {
       }
     }
 
-    allRepos = Array.isArray(repos) ? repos.filter(r => r && r.name) : [];
+    allRepos = Array.isArray(repos)
+      ? repos.filter(r => r && r.name && !HIDDEN_REPOS.has(r.name))
+      : [];
     const langs = [...new Set(allRepos.map(r => r.language).filter(Boolean))];
 
     buildFilters(langs);
