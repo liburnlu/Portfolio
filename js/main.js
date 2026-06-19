@@ -1,16 +1,3 @@
-/* ── Language colour map ── */
-const LANG_COLORS = {
-  JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572A5',
-  Java:'#b07219', Go:'#00ADD8', Rust:'#dea584', 'C#':'#178600',
-  HTML:'#e34c26', CSS:'#563d7c', 'C++':'#f34b7d', Swift:'#fa7343',
-  Kotlin:'#A97BFF', Vue:'#41b883', Ruby:'#701516', PHP:'#4F5D95',
-  Shell:'#89e051', Dart:'#00B4AB', R:'#198CE7', Scala:'#c22d40',
-  Lua:'#000080', Elixir:'#6e4a7e', Haskell:'#5e5086', Nix:'#7e7eff',
-  'Jupyter Notebook':'#DA5B0B', SCSS:'#c6538c', Svelte:'#ff3e00',
-};
-
-function langColor(l) { return LANG_COLORS[l] || '#6ee7b7'; }
-
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;')
@@ -84,7 +71,7 @@ async function loadGitHub() {
     if (user.name) {
       const nameEl = document.getElementById('display-name');
       if (nameEl) nameEl.textContent = user.name;
-      document.title = (user.name || 'liburnlu') + ' — Developer Portfolio';
+      document.title = 'Liburn Lumani — Software Engineering Portfolio';
     }
     if (user.avatar_url) {
       const img = document.getElementById('about-avatar');
@@ -105,9 +92,6 @@ async function loadGitHub() {
     allRepos = Array.isArray(repos)
       ? repos.filter(r => r && r.name && !HIDDEN_REPOS.has(r.name))
       : [];
-    const langs = [...new Set(allRepos.map(r => r.language).filter(Boolean))];
-
-    buildFilters(langs);
     renderRepos(allRepos);
 
   } catch (err) {
@@ -119,33 +103,6 @@ async function loadGitHub() {
           target="_blank" rel="noopener noreferrer">View directly on GitHub ↗</a>
       </div>`;
   }
-}
-
-function buildFilters(langs) {
-  const row = document.getElementById('filter-row');
-  if (!row) return;
-  const all = makeFilterBtn('All', true, () => { setActive(all); renderRepos(allRepos); });
-  row.appendChild(all);
-  langs.sort().forEach(l => {
-    const btn = makeFilterBtn(l, false, () => {
-      setActive(btn);
-      renderRepos(allRepos.filter(r => r.language === l));
-    });
-    row.appendChild(btn);
-  });
-}
-
-function makeFilterBtn(label, active, onclick) {
-  const b = document.createElement('button');
-  b.className = 'filter-btn' + (active ? ' active' : '');
-  b.textContent = label;
-  b.addEventListener('click', onclick);
-  return b;
-}
-
-function setActive(btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
 }
 
 function renderRepos(repos) {
@@ -163,7 +120,6 @@ function renderRepos(repos) {
       ? `projects/${featured.slug}.html`
       : r.html_url;
     const cardTarget = featured ? '' : ' target="_blank" rel="noopener noreferrer"';
-    const updated = new Date(r.updated_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
 
     return `
       <a href="${cardHref}"${cardTarget} class="repo-card">
@@ -174,11 +130,6 @@ function renderRepos(repos) {
         </div>
         <p class="repo-desc">${r.description ? escapeHtml(r.description) : '<em style="color:var(--subtle)">No description</em>'}</p>
         <div class="repo-footer">
-          ${r.language ? `
-            <span style="display:flex;align-items:center;gap:5px">
-              <span class="lang-dot" style="background:${langColor(r.language)}"></span>
-              <span class="lang-label">${escapeHtml(r.language)}</span>
-            </span>` : ''}
           ${r.stargazers_count ? `
             <span class="repo-stat">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -189,7 +140,6 @@ function renderRepos(repos) {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><line x1="12" y1="12" x2="12" y2="15"/></svg>
               ${r.forks_count}
             </span>` : ''}
-          <span class="repo-updated">${updated}</span>
         </div>
       </a>`;
   }).join('');

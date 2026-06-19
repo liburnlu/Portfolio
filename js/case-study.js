@@ -72,16 +72,38 @@ function initCaseStudy() {
   const project = window.getFeaturedBySlug(slug);
   if (!project) return;
 
-  document.title = project.title + ' — liburnlumani';
+  document.title = project.title + ' — Liburn Lumani';
 
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) metaDesc.content = project.summary;
 
   const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.content = project.title + ' — liburnlumani';
+  if (ogTitle) ogTitle.content = project.title + ' — Liburn Lumani';
 
   const ogDesc = document.querySelector('meta[property="og:description"]');
   if (ogDesc) ogDesc.content = project.summary;
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.content = 'https://liburnlumani.tech/projects/' + slug + '.html';
+
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.content = project.title + ' — Liburn Lumani';
+
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twDesc) twDesc.content = project.summary;
+
+  const schemaScript = document.getElementById('article-schema');
+  if (schemaScript) {
+    try {
+      const data = JSON.parse(schemaScript.textContent);
+      data.headline = project.title;
+      data.description = project.summary;
+      data.url = 'https://liburnlumani.tech/projects/' + slug + '.html';
+      schemaScript.textContent = JSON.stringify(data);
+    } catch (e) {
+      /* ignore parse errors */
+    }
+  }
 
   const breadcrumbEl = document.getElementById('breadcrumb');
   if (breadcrumbEl) breadcrumbEl.innerHTML = renderBreadcrumb(project.title);
