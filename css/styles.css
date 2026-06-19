@@ -164,29 +164,17 @@ section { padding: 6rem 2rem; max-width: var(--max-w); margin: 0 auto; }
 }
 
 /* ── About ── */
-#about { border-top: 1px solid var(--border); }
+#about { border-top: 1px solid var(--border); position: relative; }
 .about-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  position: relative; z-index: 1;
 }
-.about-avatar-wrap {
-  position: relative; display: flex; justify-content: center;
+#about-three-container {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden; pointer-events: none;
 }
-.about-avatar-frame {
-  width: 240px; height: 240px; border-radius: var(--radius-lg);
-  border: 1px solid var(--accent-border); overflow: hidden;
-  background: var(--bg3); position: relative;
-}
-.about-avatar-frame img {
-  width: 100%; height: 100%; object-fit: cover;
-}
-.about-avatar-placeholder {
-  width: 100%; height: 100%; display: flex; align-items: center;
-  justify-content: center; font-size: 72px; color: var(--accent);
-}
-.about-corner {
-  position: absolute; bottom: -10px; right: -10px;
-  width: 40px; height: 40px; border-right: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent); border-radius: 0 0 var(--radius-sm) 0;
+#about-three-container canvas {
+  display: block; width: 100% !important; height: 100% !important;
 }
 .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
 .skills-grid {
@@ -488,7 +476,7 @@ footer a { color: var(--accent); text-decoration: none; }
   .hero { min-height: auto; padding-top: calc(var(--nav-h) + 3rem); }
   .hero-name { font-size: 2.4rem; }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .about-avatar-wrap { display: none; }
+  #about-three-container { display: none; }
   section { padding: 4rem 1.25rem; }
   .repos-grid, .featured-grid { grid-template-columns: 1fr; }
   .case-study-page {

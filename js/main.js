@@ -73,15 +73,6 @@ async function loadGitHub() {
       if (nameEl) nameEl.textContent = user.name;
       document.title = 'Liburn Lumani — Software Engineering Portfolio';
     }
-    if (user.avatar_url) {
-      const img = document.getElementById('about-avatar');
-      const placeholder = document.getElementById('about-placeholder');
-      if (img) {
-        img.src = user.avatar_url;
-        img.style.display = '';
-      }
-      if (placeholder) placeholder.style.display = 'none';
-    }
     if (user.location) {
       const aboutP2 = document.getElementById('about-p2');
       if (aboutP2) {
